@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Coming Soon</title>
+    <meta name="description" content="We're preparing something awesome. Stay tuned!" />
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #7c3aed;
+            --muted: #9aa4b2;
+            --glass: rgba(255, 255, 255, 0.04);
+            --radius: 16px;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0
+        }
+
+        body {
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(124, 58, 237, 0.12), transparent),
+                radial-gradient(800px 400px at 90% 90%, rgba(99, 102, 241, 0.08), transparent),
+                var(--bg);
+            color: #e6eef6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 920px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 28px;
+            align-items: center;
+        }
+
+        @media (max-width:880px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo .mark {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), #4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: -0.2px
+        }
+
+        p.lead {
+            margin: 8px 0 18px;
+            color: var(--muted);
+            line-height: 1.5
+        }
+
+        .countdown {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px
+        }
+
+        .countdown .unit {
+            background: var(--glass);
+            padding: 14px 12px;
+            border-radius: 12px;
+            min-width: 82px;
+            text-align: center
+        }
+
+        .unit .num {
+            font-size: 20px;
+            font-weight: 700
+        }
+
+        .unit .lbl {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px
+        }
+
+        .subscribe {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px;
+            border-radius: 12px;
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .subscribe input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            outline: none;
+            background: transparent;
+            color: inherit
+        }
+
+        .subscribe button {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 0;
+            background: linear-gradient(90deg, var(--accent), #4f46e5);
+            color: white;
+            font-weight: 600;
+            cursor: pointer
+        }
+
+        .subscribe small {
+            display: block;
+            color: var(--muted);
+            margin-top: 8px
+        }
+
+        /* Right column */
+        .info {
+            padding: 16px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.02)
+        }
+
+        .meta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .meta .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px
+        }
+
+        .meta .item strong {
+            display: block
+        }
+
+        .socials {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px
+        }
+
+        .socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            text-decoration: none;
+            color: inherit
+        }
+
+        footer {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        /* small helpers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card" role="main" aria-labelledby="comingSoonTitle">
+        <section>
+            <div class="logo" aria-hidden="true">
+                <div class="mark">S</div>
+                <div>
+                    <div style="font-weight:700;font-size:14px;">Showcasepedia</div>
+                    <div style="font-size:12px;color:var(--muted);margin-top:2px;">Launching soon</div>
+                </div>
+            </div>
+
+            <h1 id="comingSoonTitle">We’re launching something special</h1>
+            <p class="lead">We’re building a better experience and will be live soon.</p>
+
+            <div class="countdown" aria-live="polite" id="countdown">
+                <div class="unit">
+                    <div class="num" id="days">00</div>
+                    <div class="lbl">Days</div>
+                </div>
+                <div class="unit">
+                    <div class="num" id="hours">00</div>
+                    <div class="lbl">Hours</div>
+                </div>
+                <div class="unit">
+                    <div class="num" id="minutes">00</div>
+                    <div class="lbl">Minutes</div>
+                </div>
+                <div class="unit">
+                    <div class="num" id="seconds">00</div>
+                    <div class="lbl">Seconds</div>
+                </div>
+            </div>
+
+            <form id="notifyForm" class="subscribe" onsubmit="return false;" novalidate>
+                <label for="email" class="sr-only">Email</label>
+                <input id="email" type="email" placeholder="you@example.com" required />
+                <button id="submitBtn" type="submit">Notify me</button>
+            </form>
+            <small style="color:var(--muted);display:block;margin-top:8px">We respect your privacy. No spam —
+                unsubscribe anytime.</small>
+
+            <footer>Prefer an invite code or partnership? <a href="#"
+                    style="color:var(--accent);text-decoration:none">Contact us</a>.</footer>
+        </section>
+
+        <aside class="info" aria-label="Additional info">
+            <div class="meta">
+                <div>
+                    <strong>Estimated launch</strong>
+                    <div style="color:var(--muted);margin-top:6px" id="launchDate">December 1, 2025</div>
+                </div>
+
+                <div>
+                    <strong>What to expect</strong>
+                    <div style="color:var(--muted);margin-top:6px">Beta access, exclusive discounts, and early community
+                        features.</div>
+                </div>
+
+                <div>
+                    <strong>Follow us</strong>
+                    <div class="socials" aria-hidden="true">
+                        <a href="#" title="Twitter">T</a>
+                        <a href="#" title="Instagram">I</a>
+                        <a href="#" title="LinkedIn">L</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        // === Configuration ===
+        // Change LAUNCH_DATE to your desired launch date (YYYY-MM-DDTHH:MM:SS in local time or append Z for UTC)
+        const LAUNCH_DATE = new Date('2025-12-01T00:00:00');
+
+        function pad(n) { return String(n).padStart(2, '0') }
+        function updateCountdown() {
+            const now = new Date();
+            let diff = Math.max(0, LAUNCH_DATE - now);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            diff -= days * (1000 * 60 * 60 * 24);
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * (1000 * 60 * 60);
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff -= minutes * (1000);
+            const seconds = Math.floor(diff / 1000);
+
+            document.getElementById('days').textContent = pad(days);
+            document.getElementById('hours').textContent = pad(hours);
+            document.getElementById('minutes').textContent = pad(minutes);
+            document.getElementById('seconds').textContent = pad(seconds);
+
+            if (LAUNCH_DATE - now <= 0) {
+                document.getElementById('countdown').innerHTML = '<div style="font-weight:700">We are live!</div>';
+            }
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // === Simple client-side 'email capture' demo ===
+        const form = document.getElementById('notifyForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            // Demo behavior: store in localStorage and show confirmation.
+            const key = 'coming_soon_emails';
+            const arr = JSON.parse(localStorage.getItem(key) || '[]');
+            arr.push({ email: email, ts: new Date().toISOString() });
+            localStorage.setItem(key, JSON.stringify(arr));
+            document.getElementById('email').value = '';
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = 'Saved ✓';
+            setTimeout(() => btn.textContent = 'Notify me', 2500);
+        });
+
+        // Set visible launch date text (human readable)
+        document.getElementById('launchDate').textContent = LAUNCH_DATE.toLocaleString();
+    </script>
+</body>
+
+</html>
