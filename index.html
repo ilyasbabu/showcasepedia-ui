@@ -1,341 +1,674 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Coming Soon</title>
-    <meta name="description" content="We're preparing something awesome. Stay tuned!" />
-    <style>
-        :root {
-            --bg: #0f1724;
-            --card: #0b1220;
-            --accent: #7c3aed;
-            --muted: #9aa4b2;
-            --glass: rgba(255, 255, 255, 0.04);
-            --radius: 16px;
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        html,
-        body {
-            height: 100%;
-            margin: 0
-        }
-
-        body {
-            background: radial-gradient(1200px 600px at 10% 10%, rgba(124, 58, 237, 0.12), transparent),
-                radial-gradient(800px 400px at 90% 90%, rgba(99, 102, 241, 0.08), transparent),
-                var(--bg);
-            color: #e6eef6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        .card {
-            width: 100%;
-            max-width: 920px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-            border-radius: var(--radius);
-            padding: 36px;
-            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 28px;
-            align-items: center;
-        }
-
-        @media (max-width:880px) {
-            .card {
-                grid-template-columns: 1fr;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showcasepedia - Discover Premium Shops & Products</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
             }
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px
+    </script>
+    <style>
+        body { 
+            background-color: #fafafa;
+            color: #1f2937;
+        }
+        
+        /* Glassmorphism Utilities */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(124, 58, 237, 0.1);
+            border-color: rgba(124, 58, 237, 0.2);
         }
 
-        .logo .mark {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, var(--accent), #4f46e5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: white
+        .hero-banner {
+            background-image: 
+                linear-gradient(to right, rgba(250, 250, 250, 0.9) 0%, rgba(250, 250, 250, 0.4) 100%),
+                url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 28px;
-            letter-spacing: -0.2px
+        .gradient-text {
+            background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        p.lead {
-            margin: 8px 0 18px;
-            color: var(--muted);
-            line-height: 1.5
+        /* Hide scrollbar for horizontal lists */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        .countdown {
-            display: flex;
-            gap: 12px;
-            margin-top: 6px
-        }
-
-        .countdown .unit {
-            background: var(--glass);
-            padding: 14px 12px;
-            border-radius: 12px;
-            min-width: 82px;
-            text-align: center
-        }
-
-        .unit .num {
-            font-size: 20px;
-            font-weight: 700
-        }
-
-        .unit .lbl {
-            font-size: 12px;
-            color: var(--muted);
-            margin-top: 6px
-        }
-
-        .subscribe {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 12px;
-            border-radius: 12px;
-            display: flex;
-            gap: 8px;
-            align-items: center
-        }
-
-        .subscribe input {
-            flex: 1;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            outline: none;
-            background: transparent;
-            color: inherit
-        }
-
-        .subscribe button {
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: 0;
-            background: linear-gradient(90deg, var(--accent), #4f46e5);
-            color: white;
-            font-weight: 600;
-            cursor: pointer
-        }
-
-        .subscribe small {
-            display: block;
-            color: var(--muted);
-            margin-top: 8px
-        }
-
-        /* Right column */
-        .info {
-            padding: 16px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.012), transparent);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.02)
-        }
-
-        .meta {
-            display: flex;
-            flex-direction: column;
-            gap: 12px
-        }
-
-        .meta .item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px
-        }
-
-        .meta .item strong {
-            display: block
-        }
-
-        .socials {
-            display: flex;
-            gap: 8px;
-            margin-top: 8px
-        }
-
-        .socials a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.02);
-            text-decoration: none;
-            color: inherit
-        }
-
-        footer {
-            margin-top: 18px;
-            color: var(--muted);
-            font-size: 13px
-        }
-
-        /* small helpers */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
+        .image-zoom {
             overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0
+        }
+        .image-zoom img {
+            transition: transform 0.5s ease;
+        }
+        .glass-card:hover .image-zoom img {
+            transform: scale(1.08);
         }
     </style>
 </head>
+<body class="antialiased relative overflow-x-hidden">
 
-<body>
-    <main class="card" role="main" aria-labelledby="comingSoonTitle">
-        <section>
-            <div class="logo" aria-hidden="true">
-                <div class="mark">S</div>
-                <div>
-                    <div style="font-weight:700;font-size:14px;">Showcasepedia</div>
-                    <div style="font-size:12px;color:var(--muted);margin-top:2px;">Launching soon</div>
+    <!-- Background Blobs -->
+    <div class="fixed top-0 -left-48 w-96 h-96 bg-brand-300 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob z-[-1]"></div>
+    <div class="fixed top-0 -right-48 w-96 h-96 bg-brand-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-2000 z-[-1]"></div>
+    <div class="fixed -bottom-32 left-1/2 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-4000 z-[-1]"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                        <i class="ph-bold ph-storefront text-xl"></i>
+                    </div>
+                    <span class="font-bold text-2xl tracking-tight text-gray-900">Showcase<span class="text-brand-600">pedia</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Home</a>
+                    <a href="#stores" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Stores</a>
+                    <a href="#products" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Products</a>
+                    <a href="#" class="text-gray-600 hover:text-brand-600 font-medium transition-colors">Categories</a>
+                </div>
+
+                <!-- Icons & CTA -->
+                <div class="hidden md:flex items-center space-x-5">
+                    <button class="text-gray-500 hover:text-brand-600 transition-colors">
+                        <i class="ph ph-magnifying-glass text-2xl"></i>
+                    </button>
+                    <button class="text-gray-500 hover:text-brand-600 transition-colors relative">
+                        <i class="ph ph-shopping-bag text-2xl"></i>
+                        <span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-600 text-[10px] font-bold text-white">2</span>
+                    </button>
+                    <button class="text-gray-500 hover:text-brand-600 transition-colors">
+                        <i class="ph ph-user text-2xl"></i>
+                    </button>
+                    <a href="#" class="ml-4 px-6 py-2.5 rounded-full bg-gray-900 text-white font-medium hover:bg-brand-600 transition-colors shadow-lg shadow-gray-900/20">
+                        Sign In
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-600 hover:text-brand-600">
+                        <i class="ph ph-list text-3xl"></i>
+                    </button>
                 </div>
             </div>
+        </div>
+    </nav>
 
-            <h1 id="comingSoonTitle">We’re launching something special</h1>
-            <p class="lead">We’re building a better experience and will be live soon.</p>
-
-            <div class="countdown" aria-live="polite" id="countdown">
-                <div class="unit">
-                    <div class="num" id="days">00</div>
-                    <div class="lbl">Days</div>
-                </div>
-                <div class="unit">
-                    <div class="num" id="hours">00</div>
-                    <div class="lbl">Hours</div>
-                </div>
-                <div class="unit">
-                    <div class="num" id="minutes">00</div>
-                    <div class="lbl">Minutes</div>
-                </div>
-                <div class="unit">
-                    <div class="num" id="seconds">00</div>
-                    <div class="lbl">Seconds</div>
-                </div>
-            </div>
-
-            <form id="notifyForm" class="subscribe" onsubmit="return false;" novalidate>
-                <label for="email" class="sr-only">Email</label>
-                <input id="email" type="email" placeholder="you@example.com" required />
-                <button id="submitBtn" type="submit">Notify me</button>
-            </form>
-            <small style="color:var(--muted);display:block;margin-top:8px">We respect your privacy. No spam —
-                unsubscribe anytime.</small>
-
-            <footer>Prefer an invite code or partnership? <a href="#"
-                    style="color:var(--accent);text-decoration:none">Contact us</a>.</footer>
-        </section>
-
-        <aside class="info" aria-label="Additional info">
-            <div class="meta">
-                <div>
-                    <strong>Estimated launch</strong>
-                    <div style="color:var(--muted);margin-top:6px" id="launchDate">December 1, 2025</div>
-                </div>
-
-                <div>
-                    <strong>What to expect</strong>
-                    <div style="color:var(--muted);margin-top:6px">Beta access, exclusive discounts, and early community
-                        features.</div>
-                </div>
-
-                <div>
-                    <strong>Follow us</strong>
-                    <div class="socials" aria-hidden="true">
-                        <a href="#" title="Twitter">T</a>
-                        <a href="#" title="Instagram">I</a>
-                        <a href="#" title="LinkedIn">L</a>
+    <!-- Hero Banner -->
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-28 hero-banner min-h-[85vh] flex items-center relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="max-w-2xl animate-float" style="animation-duration: 8s;">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-white/80 shadow-sm mb-6">
+                        <span class="flex h-2 w-2 rounded-full bg-brand-500"></span>
+                        <span class="text-sm font-medium text-brand-800">Discover Limitless Premium Retail</span>
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-extrabold text-gray-900 leading-[1.1] mb-6 tracking-tight">
+                        Curate Your <br />
+                        <span class="gradient-text">Lifestyle</span> Today.
+                    </h1>
+                    <p class="text-lg lg:text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
+                        Explore hand-picked boutique stores and trending lifestyle products all in one visually stunning experience.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#stores" class="px-8 py-4 rounded-full bg-brand-600 text-white font-semibold text-lg hover:bg-brand-700 transition-all shadow-lg shadow-brand-500/30 flex items-center justify-center gap-2">
+                            Explore Stores <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                        <a href="#products" class="px-8 py-4 rounded-full bg-white/80 backdrop-blur border border-gray-200 text-gray-900 font-semibold text-lg hover:bg-white hover:border-brand-200 transition-all flex items-center justify-center gap-2">
+                            View Products
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center gap-4 text-sm font-medium text-gray-500">
+                        <div class="flex -space-x-2">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="User">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt="User">
+                            <img class="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="User">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-brand-50 flex items-center justify-center text-brand-700 font-bold">+2k</div>
+                        </div>
+                        <p>Join 2,000+ happy shoppers</p>
                     </div>
                 </div>
             </div>
-        </aside>
-    </main>
+        </div>
+    </section>
 
+    <!-- Featured Stores Section (Carousel/Scroll) -->
+    <section id="stores" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex justify-between items-end">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Featured Stores ✨</h2>
+                <p class="text-gray-500 text-lg max-w-2xl">Discover top-rated boutiques and premium brands carefully curated just for you.</p>
+            </div>
+            <a href="#" class="hidden md:flex items-center gap-2 text-brand-600 font-semibold hover:text-brand-800 transition-colors group">
+                View all stores 
+                <i class="ph-bold ph-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+
+        <div class="w-full relative pl-4 sm:pl-6 lg:pl-8 max-w-[100vw]">
+            <!-- Horizontal scroll container -->
+            <div class="flex gap-6 overflow-x-auto pb-10 pt-4 no-scrollbar snap-x z-20 pr-8" style="scroll-snap-type: x mandatory;">
+                
+                <!-- Store Card 1 -->
+                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                    <div class="h-48 w-full image-zoom relative">
+                        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800&auto=format&fit=crop" alt="Lumiere Boutique" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
+                            <i class="ph-fill ph-star text-yellow-500"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-16 h-16 rounded-2xl bg-white shadow-lg absolute -top-8 left-6 flex items-center justify-center p-2 border border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=100&h=100&fit=crop" alt="Brand Logo" class="rounded-xl">
+                        </div>
+                        <div class="mt-8 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Lumiere Boutique</h3>
+                                <p class="text-gray-500 text-sm mt-1">Minimalist Fashion & Apparel</p>
+                            </div>
+                            <button class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors">
+                                <i class="ph ph-arrow-up-right text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Store Card 2 -->
+                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                    <div class="h-48 w-full image-zoom relative">
+                        <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=800&auto=format&fit=crop" alt="Neon Electronics" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
+                            <i class="ph-fill ph-star text-yellow-500"></i> 4.8
+                        </div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-16 h-16 rounded-2xl bg-gray-900 shadow-lg absolute -top-8 left-6 flex items-center justify-center p-2 border border-gray-100">
+                            <span class="text-white font-bold text-xl">N</span>
+                        </div>
+                        <div class="mt-8 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Neon Electronics</h3>
+                                <p class="text-gray-500 text-sm mt-1">Premium Gadgets & Tech</p>
+                            </div>
+                            <button class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors">
+                                <i class="ph ph-arrow-up-right text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Store Card 3 -->
+                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                    <div class="h-48 w-full image-zoom relative">
+                        <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=800&auto=format&fit=crop" alt="Hearth & Home" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
+                            <i class="ph-fill ph-star text-yellow-500"></i> 4.9
+                        </div>
+                        <div class="absolute top-4 left-4 bg-brand-500/90 text-white backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold">
+                            Featured
+                        </div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-16 h-16 rounded-2xl bg-white shadow-lg absolute -top-8 left-6 flex items-center justify-center p-2 border border-gray-100">
+                            <i class="ph-fill ph-house-line text-3xl text-brand-500"></i>
+                        </div>
+                        <div class="mt-8 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Hearth & Home</h3>
+                                <p class="text-gray-500 text-sm mt-1">Modern Decor & Furniture</p>
+                            </div>
+                            <button class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors">
+                                <i class="ph ph-arrow-up-right text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Store Card 4 -->
+                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                    <div class="h-48 w-full image-zoom relative">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop" alt="Aura Cosmetics" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
+                            <i class="ph-fill ph-star text-yellow-500"></i> 4.7
+                        </div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-16 h-16 rounded-2xl bg-pink-50 shadow-lg absolute -top-8 left-6 flex items-center justify-center p-2 border border-gray-100">
+                            <i class="ph-fill ph-drop text-3xl text-pink-500"></i>
+                        </div>
+                        <div class="mt-8 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Aura Cosmetics</h3>
+                                <p class="text-gray-500 text-sm mt-1">Organic Beauty Products</p>
+                            </div>
+                            <button class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors">
+                                <i class="ph ph-arrow-up-right text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                    <div class="h-48 w-full image-zoom relative">
+                        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800&auto=format&fit=crop" alt="Lumiere Boutique" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
+                            <i class="ph-fill ph-star text-yellow-500"></i> 4.9
+                        </div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-16 h-16 rounded-2xl bg-white shadow-lg absolute -top-8 left-6 flex items-center justify-center p-2 border border-gray-100">
+                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=100&h=100&fit=crop" alt="Brand Logo" class="rounded-xl">
+                        </div>
+                        <div class="mt-8 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Lumiere Boutique</h3>
+                                <p class="text-gray-500 text-sm mt-1">Minimalist Fashion & Apparel</p>
+                            </div>
+                            <button class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors">
+                                <i class="ph ph-arrow-up-right text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                    <div class="h-48 w-full image-zoom relative">
+                        <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=800&auto=format&fit=crop" alt="Neon Electronics" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
+                            <i class="ph-fill ph-star text-yellow-500"></i> 4.8
+                        </div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div class="w-16 h-16 rounded-2xl bg-gray-900 shadow-lg absolute -top-8 left-6 flex items-center justify-center p-2 border border-gray-100">
+                            <span class="text-white font-bold text-xl">N</span>
+                        </div>
+                        <div class="mt-8 flex justify-between items-center">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Neon Electronics</h3>
+                                <p class="text-gray-500 text-sm mt-1">Premium Gadgets & Tech</p>
+                            </div>
+                            <button class="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors">
+                                <i class="ph ph-arrow-up-right text-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="mt-6 text-center md:hidden pb-4">
+            <a href="#" class="inline-flex items-center gap-2 text-brand-600 font-semibold hover:text-brand-800 transition-colors">
+                View all stores <i class="ph-bold ph-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Trending Products Section (2 Rows Grid) -->
+    <section id="products" class="py-24 bg-white relative">
+        <!-- Subtle background pattern -->
+        <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: radial-gradient(#7c3aed 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Trending Products 🛍️</h2>
+                    <p class="text-gray-500 text-lg max-w-2xl">The most sought-after items right now from our premium vendors.</p>
+                </div>
+                
+                <!-- Filter Pills -->
+                <div class="flex gap-3 mt-6 md:mt-0 overflow-x-auto no-scrollbar pb-2">
+                    <button class="px-5 py-2 rounded-full bg-gray-900 text-white font-medium whitespace-nowrap">All</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 font-medium whitespace-nowrap transition-colors">Fashion</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 font-medium whitespace-nowrap transition-colors">Tech</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 font-medium whitespace-nowrap transition-colors">Home</button>
+                </div>
+            </div>
+
+            <!-- Product Grid (2 Rows logic) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10">
+                
+                <!-- Product 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[4/5] mb-4">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop" alt="Premium Headphones" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <!-- Badges & Actions -->
+                        <div class="absolute top-4 left-4 flex flex-col gap-2">
+                            <span class="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-xs font-bold text-brand-600 shadow-sm">Trending</span>
+                        </div>
+                        <button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-white shadow-sm transition-colors">
+                            <i class="ph-fill ph-heart text-xl flex items-center justify-center h-full w-full"></i>
+                        </button>
+                        <!-- Quick Add -->
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-16 group-hover:translate-y-0 transition-transform duration-300">
+                            <button class="w-full py-3 bg-white/90 backdrop-blur-md text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-brand-600 hover:text-white transition-colors flex items-center justify-center gap-2">
+                                <i class="ph ph-shopping-cart text-lg"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">Neon Electronics</p>
+                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-brand-600 transition-colors">Sony WH-1000XM5</h3>
+                        <div class="mt-2 flex items-center gap-3">
+                            <span class="text-xl font-extrabold text-gray-900">$348.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[4/5] mb-4">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=600&auto=format&fit=crop" alt="Smart Watch" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-white shadow-sm transition-colors">
+                            <i class="ph-fill ph-heart text-xl flex items-center justify-center h-full w-full"></i>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-16 group-hover:translate-y-0 transition-transform duration-300">
+                            <button class="w-full py-3 bg-white/90 backdrop-blur-md text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-brand-600 hover:text-white transition-colors flex items-center justify-center gap-2">
+                                <i class="ph ph-shopping-cart text-lg"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">Neon Electronics</p>
+                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-brand-600 transition-colors">Apple Watch Series 8</h3>
+                        <div class="mt-2 flex items-center gap-3">
+                            <span class="text-xl font-extrabold text-gray-900">$399.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[4/5] mb-4">
+                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop" alt="Red Nike Shoes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 flex flex-col gap-2">
+                            <span class="px-3 py-1 bg-red-500 text-white rounded-full text-xs font-bold shadow-sm">-20%</span>
+                        </div>
+                        <button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-white shadow-sm transition-colors">
+                            <i class="ph-fill ph-heart text-xl flex items-center justify-center h-full w-full"></i>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-16 group-hover:translate-y-0 transition-transform duration-300">
+                            <button class="w-full py-3 bg-white/90 backdrop-blur-md text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-brand-600 hover:text-white transition-colors flex items-center justify-center gap-2">
+                                <i class="ph ph-shopping-cart text-lg"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">Lumiere Boutique</p>
+                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-brand-600 transition-colors">Air Max 270 React</h3>
+                        <div class="mt-2 flex items-center gap-3">
+                            <span class="text-xl font-extrabold text-gray-900">$120.00</span>
+                            <span class="text-sm text-gray-400 line-through">$150.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="group cursor-pointer">
+                    <div class="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[4/5] mb-4">
+                        <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=600&auto=format&fit=crop" alt="Wooden Chair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-white shadow-sm transition-colors">
+                            <i class="ph-fill ph-heart text-xl flex items-center justify-center h-full w-full"></i>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-16 group-hover:translate-y-0 transition-transform duration-300">
+                            <button class="w-full py-3 bg-white/90 backdrop-blur-md text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-brand-600 hover:text-white transition-colors flex items-center justify-center gap-2">
+                                <i class="ph ph-shopping-cart text-lg"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">Hearth & Home</p>
+                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-brand-600 transition-colors">Nordic Minimalist Chair</h3>
+                        <div class="mt-2 flex items-center gap-3">
+                            <span class="text-xl font-extrabold text-gray-900">$215.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="group cursor-pointer">
+                    <div class="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[4/5] mb-4">
+                        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=600&auto=format&fit=crop" alt="Nike Black Sneakers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <button class="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-white shadow-sm transition-colors">
+                            <i class="ph-fill ph-heart text-xl flex items-center justify-center h-full w-full"></i>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-16 group-hover:translate-y-0 transition-transform duration-300">
+                            <button class="w-full py-3 bg-white/90 backdrop-blur-md text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-brand-600 hover:text-white transition-colors flex items-center justify-center gap-2">
+                                <i class="ph ph-shopping-cart text-lg"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">Lumiere Boutique</p>
+                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-brand-600 transition-colors">Nike Roshe Run Black</h3>
+                        <div class="mt-2 flex items-center gap-3">
+                            <span class="text-xl font-extrabold text-gray-900">$85.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="group cursor-pointer">
+                    <div class="relative bg-gray-100 rounded-3xl overflow-hidden aspect-[4/5] mb-4">
+                        <img src="https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=600&auto=format&fit=crop" alt="Vans Classic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <button class="absolute top-4 right-4 w-10 h-10 text-red-500 bg-white shadow-sm rounded-full flex items-center justify-center transition-colors">
+                            <i class="ph-fill ph-heart text-xl flex items-center justify-center h-full w-full"></i>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-16 group-hover:translate-y-0 transition-transform duration-300">
+                            <button class="w-full py-3 bg-white/90 backdrop-blur-md text-gray-900 font-bold rounded-2xl shadow-lg hover:bg-brand-600 hover:text-white transition-colors flex items-center justify-center gap-2">
+                                <i class="ph ph-shopping-cart text-lg"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">Lumiere Boutique</p>
+                        <h3 class="text-lg font-bold text-gray-900 group-hover:text-brand-600 transition-colors">Vans Classic Old Skool</h3>
+                        <div class="mt-2 flex items-center gap-3">
+                            <span class="text-xl font-extrabold text-gray-900">$65.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="group cursor-pointer lg:col-span-2">
+                    <div class="relative bg-gray-900 rounded-3xl overflow-hidden aspect-[4/5] lg:aspect-[2/1] mb-4">
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1200&auto=format&fit=crop" alt="Home Decor" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent"></div>
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold text-white shadow-sm inline-block mb-3">Collection</span>
+                            <h3 class="text-3xl font-bold text-white mb-2">Modern Living Room Set</h3>
+                            <p class="text-gray-300 max-w-md hidden sm:block">Transform your space with our award-winning sustainable furniture collection.</p>
+                            <button class="mt-6 px-6 py-3 bg-white text-gray-900 font-bold rounded-full shadow-lg hover:bg-brand-600 hover:text-white transition-colors flex items-center gap-2 w-max">
+                                Shop Collection <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- View More Button -->
+            <div class="mt-16 flex justify-center">
+                <button class="px-10 py-4 border-2 border-gray-200 rounded-full font-bold text-gray-900 hover:border-brand-600 hover:text-brand-600 hover:bg-brand-50 transition-all flex items-center gap-2 relative overflow-hidden group">
+                    <span class="relative z-10">Load More Products</span>
+                    <i class="ph ph-spinner-gap text-xl relative z-10 hidden group-hover:hidden"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-20 pb-10 relative overflow-hidden">
+        <div class="absolute -top-48 -right-48 w-96 h-96 bg-brand-600 rounded-full mix-blend-screen filter blur-[128px] opacity-20 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-2 mb-6 text-white cursor-pointer">
+                        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center shadow-lg">
+                            <i class="ph-bold ph-storefront text-xl"></i>
+                        </div>
+                        <span class="font-bold text-2xl tracking-tight">Showcase<span class="text-brand-400">pedia</span></span>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Discover the extraordinary. A curated directory of the world's most premium boutiques and trending products.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-600 transition-colors">
+                            <i class="ph-fill ph-twitter-logo text-lg"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-600 transition-colors">
+                            <i class="ph-fill ph-instagram-logo text-lg"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-600 transition-colors">
+                            <i class="ph-fill ph-facebook-logo text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Links 1 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Explore</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">Trending Products</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">Featured Stores</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">New Arrivals</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">Gift Cards</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">Vendors API</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Stay in the Loop</h4>
+                    <p class="text-gray-400 mb-4">Get curated recommendations and exclusive offers weekly.</p>
+                    <form onsubmit="event.preventDefault();" class="relative">
+                        <input type="email" placeholder="Your email address" class="w-full bg-gray-800 border-none text-white px-5 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 placeholder-gray-500">
+                        <button type="submit" class="absolute right-2 top-2 bottom-2 px-4 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-lg transition-colors">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom Foot -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2026 Showcasepedia. All rights reserved.
+                </p>
+                <div class="flex gap-6 text-sm text-gray-500">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for Navbar Backdrop on scroll -->
     <script>
-        // === Configuration ===
-        // Change LAUNCH_DATE to your desired launch date (YYYY-MM-DDTHH:MM:SS in local time or append Z for UTC)
-        const LAUNCH_DATE = new Date('2025-12-01T00:00:00');
-
-        function pad(n) { return String(n).padStart(2, '0') }
-        function updateCountdown() {
-            const now = new Date();
-            let diff = Math.max(0, LAUNCH_DATE - now);
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            diff -= days * (1000 * 60 * 60 * 24);
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            diff -= hours * (1000 * 60 * 60);
-            const minutes = Math.floor(diff / (1000 * 60));
-            diff -= minutes * (1000);
-            const seconds = Math.floor(diff / 1000);
-
-            document.getElementById('days').textContent = pad(days);
-            document.getElementById('hours').textContent = pad(hours);
-            document.getElementById('minutes').textContent = pad(minutes);
-            document.getElementById('seconds').textContent = pad(seconds);
-
-            if (LAUNCH_DATE - now <= 0) {
-                document.getElementById('countdown').innerHTML = '<div style="font-weight:700">We are live!</div>';
-            }
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // === Simple client-side 'email capture' demo ===
-        const form = document.getElementById('notifyForm');
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value.trim();
-            if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-            // Demo behavior: store in localStorage and show confirmation.
-            const key = 'coming_soon_emails';
-            const arr = JSON.parse(localStorage.getItem(key) || '[]');
-            arr.push({ email: email, ts: new Date().toISOString() });
-            localStorage.setItem(key, JSON.stringify(arr));
-            document.getElementById('email').value = '';
-            const btn = document.getElementById('submitBtn');
-            btn.textContent = 'Saved ✓';
-            setTimeout(() => btn.textContent = 'Notify me', 2500);
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            // if (window.scrollY > 20) {
+            //     nav.classList.add('shadow-md');
+            //     nav.classList.replace('glass-nav', 'bg-white/90');
+            //     nav.style.backdropFilter = "blur(16px)";
+            // } else {
+            //     nav.classList.remove('shadow-md');
+            //     nav.classList.replace('bg-white/90', 'glass-nav');
+            // }
         });
-
-        // Set visible launch date text (human readable)
-        document.getElementById('launchDate').textContent = LAUNCH_DATE.toLocaleString();
     </script>
 </body>
-
 </html>
