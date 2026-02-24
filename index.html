@@ -165,9 +165,32 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-gray-600 hover:text-brand-600">
-                        <i class="ph ph-list text-3xl"></i>
+                    <button id="mobileMenuBtn" class="text-gray-600 hover:text-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 rounded p-1 transition-colors">
+                        <i id="mobileMenuIcon" class="ph ph-list text-3xl transition-transform duration-300"></i>
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-3xl border-b border-gray-100 shadow-xl overflow-hidden transition-all duration-300 ease-in-out absolute w-full left-0 top-full">
+            <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3">
+                <a href="#" class="block px-4 py-3 text-base font-medium text-gray-900 rounded-xl hover:bg-brand-50 hover:text-brand-600 transition-colors">Home</a>
+                <a href="#stores" class="block px-4 py-3 text-base font-medium text-gray-600 rounded-xl hover:bg-brand-50 hover:text-brand-600 transition-colors">Stores</a>
+                <a href="#products" class="block px-4 py-3 text-base font-medium text-gray-600 rounded-xl hover:bg-brand-50 hover:text-brand-600 transition-colors">Products</a>
+                <a href="#" class="block px-4 py-3 text-base font-medium text-gray-600 rounded-xl hover:bg-brand-50 hover:text-brand-600 transition-colors">Categories</a>
+                
+                <div class="mt-6 px-4 pt-6 border-t border-gray-100">
+                    <div class="flex items-center gap-6 mb-6">
+                        <button class="text-gray-500 relative flex items-center gap-3">
+                            <i class="ph ph-shopping-bag text-2xl"></i>
+                            <span class="font-medium">Cart</span>
+                            <span class="flex h-5 w-5 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">2</span>
+                        </button>
+                    </div>
+                    <a href="#" class="block w-full text-center px-6 py-3 rounded-xl bg-gray-900 text-white font-medium hover:bg-brand-600 transition-colors shadow-lg shadow-gray-900/20">
+                        Sign In
+                    </a>
                 </div>
             </div>
         </div>
@@ -230,7 +253,7 @@
             <div class="flex gap-6 overflow-x-auto pb-10 pt-4 no-scrollbar snap-x z-20 pr-8" style="scroll-snap-type: x mandatory;">
                 
                 <!-- Store Card 1 -->
-                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                <div class="w-[85vw] sm:w-[320px] md:w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
                     <div class="h-48 w-full image-zoom relative">
                         <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800&auto=format&fit=crop" alt="Lumiere Boutique" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
@@ -254,7 +277,7 @@
                 </div>
 
                 <!-- Store Card 2 -->
-                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                <div class="w-[85vw] sm:w-[320px] md:w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
                     <div class="h-48 w-full image-zoom relative">
                         <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=800&auto=format&fit=crop" alt="Neon Electronics" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
@@ -278,7 +301,7 @@
                 </div>
 
                 <!-- Store Card 3 -->
-                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                <div class="w-[85vw] sm:w-[320px] md:w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
                     <div class="h-48 w-full image-zoom relative">
                         <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=800&auto=format&fit=crop" alt="Hearth & Home" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
@@ -305,7 +328,7 @@
                 </div>
 
                 <!-- Store Card 4 -->
-                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                <div class="w-[85vw] sm:w-[320px] md:w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
                     <div class="h-48 w-full image-zoom relative">
                         <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop" alt="Aura Cosmetics" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
@@ -328,7 +351,7 @@
                     </div>
                 </div>
 
-                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                <div class="w-[85vw] sm:w-[320px] md:w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
                     <div class="h-48 w-full image-zoom relative">
                         <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800&auto=format&fit=crop" alt="Lumiere Boutique" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
@@ -351,7 +374,7 @@
                     </div>
                 </div>
 
-                <div class="min-w-[320px] md:min-w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
+                <div class="w-[85vw] sm:w-[320px] md:w-[400px] glass-card rounded-3xl overflow-hidden snap-center flex-shrink-0 cursor-pointer">
                     <div class="h-48 w-full image-zoom relative">
                         <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=800&auto=format&fit=crop" alt="Neon Electronics" class="w-full h-full object-cover">
                         <div class="absolute top-4 right-4 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center gap-1">
@@ -668,6 +691,33 @@
             //     nav.classList.remove('shadow-md');
             //     nav.classList.replace('bg-white/90', 'glass-nav');
             // }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+        
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Animate Icon
+                if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenuIcon.classList.replace('ph-x', 'ph-list');
+                } else {
+                    mobileMenuIcon.classList.replace('ph-list', 'ph-x');
+                }
+            });
+        }
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.classList.replace('ph-x', 'ph-list');
+            });
         });
     </script>
 </body>
